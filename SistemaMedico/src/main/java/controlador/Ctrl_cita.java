@@ -16,6 +16,10 @@ public class Ctrl_cita {
         return citaDAO.obtenerCitasPendientes();
     }
 
+    public int contarCitasPorDoctor(int idDoctor) {
+        return citaDAO.contarCitasPorDoctor(idDoctor);
+    }
+
     public boolean registrarCita(Cita cita) {
         if (cita == null) {
             System.out.println("La cita no puede ser nula");

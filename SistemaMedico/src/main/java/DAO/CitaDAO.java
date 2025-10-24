@@ -155,4 +155,20 @@ public class CitaDAO {
         return citas;
     }
 
+    public int contarCitasPorDoctor(int idDoctor) {
+        String sql = "SELECT COUNT(*) FROM tb_citas WHERE id_usuario = ?";
+        try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idDoctor);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al contar citas: " + e.getMessage());
+        }
+        return 0;
+    }
+
 }

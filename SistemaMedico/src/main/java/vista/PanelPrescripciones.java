@@ -4,14 +4,13 @@ import modelo.Receta;
 import controlador.Ctrl_receta;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import java.util.AbstractMap;
+import java.util.Map.Entry;
 import java.io.FileOutputStream;
-import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import com.google.common.collect.Lists;
 import controlador.Ctrl_cita;
-import java.util.function.Function;
 import modelo.Cita;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -31,7 +30,7 @@ public class PanelPrescripciones extends javax.swing.JPanel {
         List<Cita> citasPendientes = ctrlCita.obtenerCitasPendientes();
 
         modeloTabla = new DefaultTableModel(
-                new Object[]{"ID", "Paciente", "Doctor", "Descripción", "Fecha Emisión"}, 0
+                new Object[]{"ID receta", "Paciente", "Doctor", "Descripción", "Fecha Emisión"}, 0
         );
         tablaRecetas.setModel(modeloTabla);
         cargarTabla();
@@ -54,15 +53,22 @@ public class PanelPrescripciones extends javax.swing.JPanel {
     private void agregarReceta() {
         try {
             Ctrl_cita ctrlCita = new Ctrl_cita();
-            java.util.List<Cita> citas = ctrlCita.obtenerCitasPendientes();
+            List<Cita> citas = ctrlCita.obtenerCitasPendientes();
 
             if (citas.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No hay citas pendientes.");
                 return;
             }
 
-            String[] opciones = citas.stream()
-                    .map(c -> "ID cita: " + c.getId_cita() + " - " + c.getNombrePaciente() + " " + c.getApellidoPaciente())
+            List<Entry<String, Cita>> opcionesList = Lists.transform(citas, c
+                    -> new AbstractMap.SimpleEntry<>(
+                            "ID cita: " + c.getId_cita() + " - " + c.getNombrePaciente() + " " + c.getApellidoPaciente(),
+                            c
+                    )
+            );
+
+            String[] opcionesTexto = opcionesList.stream()
+                    .map(Entry::getKey)
                     .toArray(String[]::new);
 
             String seleccion = (String) JOptionPane.showInputDialog(
@@ -71,21 +77,26 @@ public class PanelPrescripciones extends javax.swing.JPanel {
                     "Agregar Receta",
                     JOptionPane.PLAIN_MESSAGE,
                     null,
-                    opciones,
-                    opciones[0]
+                    opcionesTexto,
+                    opcionesTexto[0]
             );
 
             if (seleccion == null) {
-                return;
+                return; 
             }
-            int idCita = Integer.parseInt(seleccion.split(" - ")[0]);
+
+            Cita citaSeleccionada = opcionesList.stream()
+                    .filter(e -> e.getKey().equals(seleccion))
+                    .findFirst()
+                    .get()
+                    .getValue();
 
             String descripcion = JOptionPane.showInputDialog(this, "Descripción de la receta:");
             if (descripcion == null || descripcion.isEmpty()) {
                 return;
             }
 
-            Receta r = ctrlReceta.crearReceta(idCita, descripcion);
+            Receta r = ctrlReceta.crearReceta(citaSeleccionada.getId_cita(), descripcion);
             listaRecetas.add(r);
             cargarTabla();
 

@@ -48,6 +48,7 @@ public class FrmMenu extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1500, 900));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelRound1.setBackground(new java.awt.Color(242, 242, 242));
         panelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/logoHE.png"))); // NOI18N
@@ -68,6 +69,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jPanel1.add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 360, 120));
 
+        panelRound2.setBackground(new java.awt.Color(242, 242, 242));
         panelRound2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnUsuario1.setBackground(new java.awt.Color(47, 114, 181));
@@ -170,6 +172,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 360, 780));
 
+        panelRound3.setBackground(new java.awt.Color(242, 242, 242));
         panelRound3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 1160, 920));
 
@@ -235,6 +238,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FrmMenu().setVisible(true);
             }

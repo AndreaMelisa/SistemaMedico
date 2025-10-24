@@ -1,20 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vista;
 
-/**
- *
- * @author zylit
- */
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JPanel;
+import modelo.Usuario;
+
+
 public class FrmMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmMenu
-     */
     public FrmMenu() {
         initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Menú - Hospital de Emergencias");
+        this.setSize(new Dimension(1600, 1036));
+    }
+
+    private Usuario usuario;
+
+    public FrmMenu(Usuario usuario) {
+        initComponents();
+        this.usuario = usuario;
+
+        PanelPerfil perfilPanel = new PanelPerfil(usuario);
+        mostrarPanel(perfilPanel.getPnlPerfil());
+    }
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/imagen/logoH.png"));
+        return retValue;
     }
 
     /**
@@ -32,14 +48,14 @@ public class FrmMenu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         panelRound2 = new Componente.PanelRound();
-        btnUsuario1 = new javax.swing.JButton();
-        btnUsuario4 = new javax.swing.JButton();
-        btnUsuario5 = new javax.swing.JButton();
-        btnUsuario6 = new javax.swing.JButton();
-        btnUsuario7 = new javax.swing.JButton();
-        btnUsuario8 = new javax.swing.JButton();
-        btnUsuario9 = new javax.swing.JButton();
-        panelRound3 = new Componente.PanelRound();
+        btnCitas = new Componente.ButtonRound();
+        btnAgendar = new Componente.ButtonRound();
+        btnHistorial = new Componente.ButtonRound();
+        btnPrescripciones = new Componente.ButtonRound();
+        btnReportes = new Componente.ButtonRound();
+        btnCerrrarSesion = new Componente.ButtonRound();
+        btnPerfil = new Componente.ButtonRound();
+        pnlPrincipal = new Componente.PanelRound();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,142 +88,160 @@ public class FrmMenu extends javax.swing.JFrame {
         panelRound2.setBackground(new java.awt.Color(242, 242, 242));
         panelRound2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUsuario1.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        btnUsuario1.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/calendario.png"))); // NOI18N
-        btnUsuario1.setText(" CITAS PROGRAMADAS");
-        btnUsuario1.setToolTipText("");
-        btnUsuario1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        btnCitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/calendario.png"))); // NOI18N
+        btnCitas.setText("CITAS PROGRAMADAS");
+        btnCitas.setColorClick(new java.awt.Color(0, 51, 102));
+        btnCitas.setColorFin(new java.awt.Color(47, 114, 181));
+        btnCitas.setColorHover(new java.awt.Color(45, 118, 154));
+        btnCitas.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnCitas.setFont(new java.awt.Font("Verdana", 1, 19)); // NOI18N
+        btnCitas.setRound(50);
+        btnCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario1ActionPerformed(evt);
+                btnCitasActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 310, 60));
+        panelRound2.add(btnCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 320, 60));
 
-        btnUsuario4.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario4.setFont(new java.awt.Font("Verdana", 1, 30)); // NOI18N
-        btnUsuario4.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/usuario.png"))); // NOI18N
-        btnUsuario4.setText(" PERFIL");
-        btnUsuario4.setToolTipText("");
-        btnUsuario4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario4.addActionListener(new java.awt.event.ActionListener() {
+        btnAgendar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/agendar.png"))); // NOI18N
+        btnAgendar.setText(" AGENDAR CITAS");
+        btnAgendar.setColorClick(new java.awt.Color(0, 51, 102));
+        btnAgendar.setColorFin(new java.awt.Color(47, 114, 181));
+        btnAgendar.setColorHover(new java.awt.Color(45, 118, 154));
+        btnAgendar.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnAgendar.setFont(new java.awt.Font("Verdana", 1, 19)); // NOI18N
+        btnAgendar.setRound(50);
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario4ActionPerformed(evt);
+                btnAgendarActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 310, 60));
+        panelRound2.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 320, 60));
 
-        btnUsuario5.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        btnUsuario5.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/salir.png"))); // NOI18N
-        btnUsuario5.setText(" CERRAR SESIÓN");
-        btnUsuario5.setToolTipText("");
-        btnUsuario5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario5.addActionListener(new java.awt.event.ActionListener() {
+        btnHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/historial.png"))); // NOI18N
+        btnHistorial.setText(" HISTORIAL MÉDICO");
+        btnHistorial.setColorClick(new java.awt.Color(0, 51, 102));
+        btnHistorial.setColorFin(new java.awt.Color(47, 114, 181));
+        btnHistorial.setColorHover(new java.awt.Color(45, 118, 154));
+        btnHistorial.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnHistorial.setFont(new java.awt.Font("Verdana", 1, 19)); // NOI18N
+        btnHistorial.setRound(50);
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario5ActionPerformed(evt);
+                btnHistorialActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, 310, 60));
+        panelRound2.add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 320, 60));
 
-        btnUsuario6.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        btnUsuario6.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/agendar.png"))); // NOI18N
-        btnUsuario6.setText(" AGENDAR CITA");
-        btnUsuario6.setToolTipText("");
-        btnUsuario6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario6.addActionListener(new java.awt.event.ActionListener() {
+        btnPrescripciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/prescripcion.png"))); // NOI18N
+        btnPrescripciones.setText(" PRESCRIPCIONES");
+        btnPrescripciones.setColorClick(new java.awt.Color(0, 51, 102));
+        btnPrescripciones.setColorFin(new java.awt.Color(47, 114, 181));
+        btnPrescripciones.setColorHover(new java.awt.Color(45, 118, 154));
+        btnPrescripciones.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnPrescripciones.setFont(new java.awt.Font("Verdana", 1, 19)); // NOI18N
+        btnPrescripciones.setRound(50);
+        btnPrescripciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario6ActionPerformed(evt);
+                btnPrescripcionesActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 310, 60));
+        panelRound2.add(btnPrescripciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 320, 60));
 
-        btnUsuario7.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        btnUsuario7.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/historial.png"))); // NOI18N
-        btnUsuario7.setText(" HISTORIAL MÉDICO");
-        btnUsuario7.setToolTipText("");
-        btnUsuario7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario7.addActionListener(new java.awt.event.ActionListener() {
+        btnReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/reportes.png"))); // NOI18N
+        btnReportes.setText(" REPORTES");
+        btnReportes.setColorClick(new java.awt.Color(0, 51, 102));
+        btnReportes.setColorFin(new java.awt.Color(47, 114, 181));
+        btnReportes.setColorHover(new java.awt.Color(45, 118, 154));
+        btnReportes.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnReportes.setFont(new java.awt.Font("Verdana", 1, 19)); // NOI18N
+        btnReportes.setRound(50);
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario7ActionPerformed(evt);
+                btnReportesActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 310, 60));
+        panelRound2.add(btnReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 320, 60));
 
-        btnUsuario8.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        btnUsuario8.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/prescripcion.png"))); // NOI18N
-        btnUsuario8.setText(" PRESCRIPCIONES");
-        btnUsuario8.setToolTipText("");
-        btnUsuario8.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario8.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/salir.png"))); // NOI18N
+        btnCerrrarSesion.setText(" CERRAR SESIÓN");
+        btnCerrrarSesion.setColorClick(new java.awt.Color(0, 51, 102));
+        btnCerrrarSesion.setColorFin(new java.awt.Color(47, 114, 181));
+        btnCerrrarSesion.setColorHover(new java.awt.Color(45, 118, 154));
+        btnCerrrarSesion.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnCerrrarSesion.setFont(new java.awt.Font("Verdana", 1, 19)); // NOI18N
+        btnCerrrarSesion.setRound(50);
+        btnCerrrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario8ActionPerformed(evt);
+                btnCerrrarSesionActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 310, 60));
+        panelRound2.add(btnCerrrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 690, 320, 60));
 
-        btnUsuario9.setBackground(new java.awt.Color(47, 114, 181));
-        btnUsuario9.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        btnUsuario9.setForeground(new java.awt.Color(255, 255, 255));
-        btnUsuario9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/reportes.png"))); // NOI18N
-        btnUsuario9.setText(" REPORTES");
-        btnUsuario9.setToolTipText("");
-        btnUsuario9.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnUsuario9.addActionListener(new java.awt.event.ActionListener() {
+        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/usuario.png"))); // NOI18N
+        btnPerfil.setText("PERFIL");
+        btnPerfil.setColorClick(new java.awt.Color(0, 51, 102));
+        btnPerfil.setColorFin(new java.awt.Color(47, 114, 181));
+        btnPerfil.setColorHover(new java.awt.Color(45, 118, 154));
+        btnPerfil.setColorInicio(new java.awt.Color(47, 114, 181));
+        btnPerfil.setFont(new java.awt.Font("Verdana", 1, 30)); // NOI18N
+        btnPerfil.setRound(50);
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuario9ActionPerformed(evt);
+                btnPerfilActionPerformed(evt);
             }
         });
-        panelRound2.add(btnUsuario9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 310, 60));
+        panelRound2.add(btnPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 320, 60));
 
         jPanel1.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 360, 780));
 
-        panelRound3.setBackground(new java.awt.Color(242, 242, 242));
-        panelRound3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(panelRound3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 1160, 920));
+        pnlPrincipal.setBackground(new java.awt.Color(242, 242, 242));
+        pnlPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(pnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 30, 1160, 920));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1600, 1000));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario1ActionPerformed
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        PanelPerfil pp = new PanelPerfil(this.usuario);
+        mostrarPanel(pp.getPnlPerfil());
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
-    private void btnUsuario4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario4ActionPerformed
+    private void btnCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario4ActionPerformed
+    }//GEN-LAST:event_btnCitasActionPerformed
 
-    private void btnUsuario5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario5ActionPerformed
+    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario5ActionPerformed
+    }//GEN-LAST:event_btnAgendarActionPerformed
 
-    private void btnUsuario6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario6ActionPerformed
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario6ActionPerformed
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
-    private void btnUsuario7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario7ActionPerformed
+    private void btnPrescripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrescripcionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario7ActionPerformed
+    }//GEN-LAST:event_btnPrescripcionesActionPerformed
 
-    private void btnUsuario8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario8ActionPerformed
+    private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario8ActionPerformed
+    }//GEN-LAST:event_btnReportesActionPerformed
 
-    private void btnUsuario9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuario9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUsuario9ActionPerformed
+    private void btnCerrrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrrarSesionActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCerrrarSesionActionPerformed
+
+    void mostrarPanel(JPanel p) {
+        p.setSize(1160, 920);
+        p.setLocation(0, 0);
+
+        pnlPrincipal.removeAll();
+        pnlPrincipal.add(p, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 920));
+        pnlPrincipal.revalidate();
+        pnlPrincipal.repaint();
+    }
 
     /**
      * @param args the command line arguments
@@ -246,19 +280,19 @@ public class FrmMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnUsuario1;
-    private javax.swing.JButton btnUsuario4;
-    private javax.swing.JButton btnUsuario5;
-    private javax.swing.JButton btnUsuario6;
-    private javax.swing.JButton btnUsuario7;
-    private javax.swing.JButton btnUsuario8;
-    private javax.swing.JButton btnUsuario9;
+    private Componente.ButtonRound btnAgendar;
+    private Componente.ButtonRound btnCerrrarSesion;
+    private Componente.ButtonRound btnCitas;
+    private Componente.ButtonRound btnHistorial;
+    private Componente.ButtonRound btnPerfil;
+    private Componente.ButtonRound btnPrescripciones;
+    private Componente.ButtonRound btnReportes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private Componente.PanelRound panelRound1;
     private Componente.PanelRound panelRound2;
-    private Componente.PanelRound panelRound3;
+    private Componente.PanelRound pnlPrincipal;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,17 +11,15 @@ import javax.swing.JPanel;
 
 public class PanelRound extends JPanel {
 
-    // 🔹 Propiedades personalizables
-    private int round = 20; // Radio de las esquinas
+    private int round = 20; 
     private Color borderColor = Color.BLACK;
-    private int borderThickness = 0; // 0 = sin borde
-    private float opacity = 1.0f; // Transparencia (1.0 = opaco, 0.0 = invisible)
+    private int borderThickness = 0; 
+    private float opacity = 1.0f;
 
     public PanelRound() {
         setOpaque(false);
     }
 
-    // =================== MÉTODOS GET/SET ===================
     public int getRound() { return round; }
     public void setRound(int round) { this.round = round; repaint(); }
 
@@ -33,11 +31,10 @@ public class PanelRound extends JPanel {
 
     public float getOpacityValue() { return opacity; }
     public void setOpacityValue(float opacity) {
-        this.opacity = Math.max(0.0f, Math.min(opacity, 1.0f)); // Limita entre 0 y 1
+        this.opacity = Math.max(0.0f, Math.min(opacity, 1.0f)); 
         repaint();
     }
 
-    // =================== DIBUJO PERSONALIZADO ===================
     @Override
     protected void paintComponent(Graphics grphcs) {
         super.paintComponent(grphcs);
@@ -47,9 +44,8 @@ public class PanelRound extends JPanel {
 
         int width = getWidth();
         int height = getHeight();
-        int inset = borderThickness / 2; // Centra el borde
+        int inset = borderThickness / 2;
 
-        // 🔹 Crear forma redondeada
         Area area = new Area(new RoundRectangle2D.Double(
                 inset, inset,
                 width - borderThickness,
@@ -57,12 +53,10 @@ public class PanelRound extends JPanel {
                 round * 2, round * 2
         ));
 
-        // 🔹 Fondo con transparencia
         Color bg = getBackground();
         g2.setColor(new Color(bg.getRed(), bg.getGreen(), bg.getBlue(), Math.round(opacity * 255)));
         g2.fill(area);
 
-        // 🔹 Borde
         if (borderThickness > 0) {
             g2.setStroke(new BasicStroke(borderThickness));
             g2.setColor(borderColor);

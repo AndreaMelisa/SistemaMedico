@@ -10,7 +10,6 @@ public class Usuario {
     private String rol;
     private String estado;
 
-    // Constructores
     public Usuario() {
     }
 
@@ -19,7 +18,6 @@ public class Usuario {
         this.contraUsuario = contraUsuario;
     }
 
-    // Getters y Setters
     public int getIdUsuario() {
         return idUsuario;
     }

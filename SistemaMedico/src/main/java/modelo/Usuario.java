@@ -9,6 +9,7 @@ public class Usuario {
     private String dniUsuario;
     private String rol;
     private String estado;
+    private String apellidoUsuario;
 
     public Usuario() {
     }
@@ -72,5 +73,13 @@ public class Usuario {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getApellidoUsuario() {
+        return apellidoUsuario;
+    }
+
+    public void setApellidoUsuario(String apellidoUsuario) {
+        this.apellidoUsuario = apellidoUsuario;
     }
 }

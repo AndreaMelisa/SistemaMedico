@@ -100,26 +100,26 @@ public class PanelAgendar extends javax.swing.JPanel {
 
         pnlDni.add(pnlDni1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 400, 50));
 
-        pnlAgendar.add(pnlDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 390, 50));
+        pnlAgendar.add(pnlDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 390, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setText("BUSCAR A PACIENTE POR DNI");
-        pnlAgendar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        pnlAgendar.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         lbldni.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lbldni.setForeground(new java.awt.Color(102, 102, 102));
         lbldni.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lbldni.setText("DNI");
         lbldni.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlAgendar.add(lbldni, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 330, -1));
+        pnlAgendar.add(lbldni, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 330, -1));
 
         lblapellido.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblapellido.setForeground(new java.awt.Color(102, 102, 102));
         lblapellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblapellido.setText("APELLIDO");
         lblapellido.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlAgendar.add(lblapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 330, -1));
+        pnlAgendar.add(lblapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 330, -1));
 
         pnlDni2.setBackground(new java.awt.Color(242, 242, 242));
         pnlDni2.setBorderThickness(1);
@@ -135,7 +135,7 @@ public class PanelAgendar extends javax.swing.JPanel {
         lblhorainicio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDni2.add(lblhorainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 250, 50));
 
-        pnlAgendar.add(pnlDni2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 610, 310, 50));
+        pnlAgendar.add(pnlDni2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 740, 310, 50));
 
         pnlDni3.setBackground(new java.awt.Color(242, 242, 242));
         pnlDni3.setBorderThickness(1);
@@ -151,34 +151,38 @@ public class PanelAgendar extends javax.swing.JPanel {
         lblfecha.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnlDni3.add(lblfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, 250, 50));
 
-        pnlAgendar.add(pnlDni3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 680, 310, 50));
+        pnlAgendar.add(pnlDni3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 810, 310, 50));
 
         lblnombre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblnombre.setForeground(new java.awt.Color(102, 102, 102));
         lblnombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblnombre.setText("NOMBRE");
         lblnombre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlAgendar.add(lblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 530, 330, -1));
+        pnlAgendar.add(lblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 330, -1));
 
-        btnAgendar.setText("buttonRound1");
+        btnAgendar.setText("AGENDAR");
+        btnAgendar.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         btnAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgendarActionPerformed(evt);
             }
         });
-        pnlAgendar.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 780, -1, -1));
+        pnlAgendar.add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 680, 180, 40));
 
-        btnBuscar.setText("buttonRound1");
+        btnBuscar.setText("BUSCAR");
+        btnBuscar.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        pnlAgendar.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
-        pnlAgendar.add(spinnerHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 790, 130, 80));
+        pnlAgendar.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 180, 40));
+        pnlAgendar.add(spinnerHoraInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, 130, 40));
 
-        txtmotivo.setText("jTextField1");
-        pnlAgendar.add(txtmotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
+        txtmotivo.setBackground(new java.awt.Color(242, 242, 242));
+        txtmotivo.setToolTipText("");
+        txtmotivo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MOTIVOS DE LA CITA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(51, 51, 51))); // NOI18N
+        pnlAgendar.add(txtmotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 330, 130));
 
         add(pnlAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 920));
     }// </editor-fold>//GEN-END:initComponents

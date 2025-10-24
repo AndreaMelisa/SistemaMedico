@@ -1,6 +1,7 @@
 package controlador;
 
 import DAO.CitaDAO;
+import java.util.List;
 import modelo.Cita;
 
 public class Ctrl_cita {
@@ -9,6 +10,10 @@ public class Ctrl_cita {
 
     public Ctrl_cita() {
         this.citaDAO = new CitaDAO();
+    }
+
+    public List<Cita> obtenerCitasPendientes() {
+        return citaDAO.obtenerCitasPendientes();
     }
 
     public boolean registrarCita(Cita cita) {

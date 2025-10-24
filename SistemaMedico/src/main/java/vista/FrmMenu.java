@@ -229,7 +229,8 @@ public final class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnPrescripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrescripcionesActionPerformed
-        // TODO add your handling code here:
+        PanelPrescripciones ppr = new PanelPrescripciones();
+        mostrarPanel(ppr);
     }//GEN-LAST:event_btnPrescripcionesActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed

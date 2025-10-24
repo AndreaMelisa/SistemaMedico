@@ -1,6 +1,6 @@
 package vista;
 
-import controlador.Ctrl_usuario;
+import controlador.Ctrl_cita;
 import javax.swing.JPanel;
 import modelo.Usuario;
 
@@ -21,11 +21,26 @@ public class PanelPerfil extends javax.swing.JPanel {
 
     private void mostrarDatosUsuario(Usuario usuario) {
         if (usuario != null) {
-            lblnombreusuario.setText(usuario.getNombreUsuario());
-            lblapellidousuario.setText(usuario.getApellidoUsuario());
+            lblNombreUsuario.setText(usuario.getNombreUsuario());
+            lblApellidoUsuario.setText(usuario.getApellidoUsuario());
+            lblCorreoUsuario.setText(usuario.getCorreoUsuario());
+            lblDniUsuario.setText(usuario.getDniUsuario());
+            lblRol.setText(usuario.getRol());
+            lblEstadoUsuario.setText(usuario.getEstado());
+
+            if ("Doctor".equals(usuario.getRol())) {
+                Ctrl_cita ctrlCita = new Ctrl_cita();
+                int totalCitas = ctrlCita.contarCitasPorDoctor(usuario.getIdUsuario());
+                lblTotalCitas.setText(String.valueOf(totalCitas));
+            }
         } else {
-            lblnombreusuario.setText("Nombre");
-            lblapellidousuario.setText("Apellido");
+            lblNombreUsuario.setText("Nombre");
+            lblApellidoUsuario.setText("Apellido");
+            lblCorreoUsuario.setText("Correo");
+            lblDniUsuario.setText("DNI");
+            lblRol.setText("Rol");
+            lblEstadoUsuario.setText("Estado");
+            lblTotalCitas.setText("-");
         }
     }
 
@@ -40,9 +55,15 @@ public class PanelPerfil extends javax.swing.JPanel {
 
         pnlPerfil = new Componente.PanelRound();
         jLabel9 = new javax.swing.JLabel();
-        lblnombreusuario = new javax.swing.JLabel();
-        lblapellidousuario = new javax.swing.JLabel();
+        lblNombreUsuario = new javax.swing.JLabel();
+        lblApellidoUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lblCorreoUsuario = new javax.swing.JLabel();
+        lblTotalCitas = new javax.swing.JLabel();
+        lblEstadoUsuario = new javax.swing.JLabel();
+        lblDniUsuario = new javax.swing.JLabel();
+        lblRol = new javax.swing.JLabel();
+        lblRolUsuario2 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -54,26 +75,74 @@ public class PanelPerfil extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("BUEN DÍA,");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlPerfil.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 340, 70));
+        pnlPerfil.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 340, 70));
 
-        lblnombreusuario.setBackground(new java.awt.Color(255, 255, 255));
-        lblnombreusuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblnombreusuario.setForeground(new java.awt.Color(51, 51, 51));
-        lblnombreusuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblnombreusuario.setText("nombre");
-        lblnombreusuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlPerfil.add(lblnombreusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 330, -1));
+        lblNombreUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblNombreUsuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblNombreUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblNombreUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNombreUsuario.setText("nombre");
+        lblNombreUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 330, -1));
 
-        lblapellidousuario.setBackground(new java.awt.Color(255, 255, 255));
-        lblapellidousuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
-        lblapellidousuario.setForeground(new java.awt.Color(51, 51, 51));
-        lblapellidousuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblapellidousuario.setText("apellido");
-        lblapellidousuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlPerfil.add(lblapellidousuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 330, -1));
+        lblApellidoUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblApellidoUsuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblApellidoUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblApellidoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblApellidoUsuario.setText("apellido");
+        lblApellidoUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblApellidoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 330, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/perfil.png"))); // NOI18N
-        pnlPerfil.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 410, 360));
+        pnlPerfil.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, 410, 360));
+
+        lblCorreoUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblCorreoUsuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblCorreoUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblCorreoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCorreoUsuario.setText("correo");
+        lblCorreoUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblCorreoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 730, 330, -1));
+
+        lblTotalCitas.setBackground(new java.awt.Color(255, 255, 255));
+        lblTotalCitas.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblTotalCitas.setForeground(new java.awt.Color(51, 51, 51));
+        lblTotalCitas.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTotalCitas.setText("-");
+        lblTotalCitas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblTotalCitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 170, 330, -1));
+
+        lblEstadoUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblEstadoUsuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblEstadoUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblEstadoUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblEstadoUsuario.setText("estado");
+        lblEstadoUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblEstadoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 800, 330, -1));
+
+        lblDniUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblDniUsuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblDniUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblDniUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDniUsuario.setText("DNI");
+        lblDniUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblDniUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 670, 330, -1));
+
+        lblRol.setBackground(new java.awt.Color(255, 255, 255));
+        lblRol.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblRol.setForeground(new java.awt.Color(51, 51, 51));
+        lblRol.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRol.setText("rol");
+        lblRol.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 330, -1));
+
+        lblRolUsuario2.setBackground(new java.awt.Color(255, 255, 255));
+        lblRolUsuario2.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
+        lblRolUsuario2.setForeground(new java.awt.Color(51, 51, 51));
+        lblRolUsuario2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblRolUsuario2.setText("CITAS TOTALES");
+        lblRolUsuario2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        pnlPerfil.add(lblRolUsuario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 100, 330, -1));
 
         add(pnlPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 920));
     }// </editor-fold>//GEN-END:initComponents
@@ -82,8 +151,14 @@ public class PanelPerfil extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblapellidousuario;
-    private javax.swing.JLabel lblnombreusuario;
+    private javax.swing.JLabel lblApellidoUsuario;
+    private javax.swing.JLabel lblCorreoUsuario;
+    private javax.swing.JLabel lblDniUsuario;
+    private javax.swing.JLabel lblEstadoUsuario;
+    private javax.swing.JLabel lblNombreUsuario;
+    private javax.swing.JLabel lblRol;
+    private javax.swing.JLabel lblRolUsuario2;
+    private javax.swing.JLabel lblTotalCitas;
     private Componente.PanelRound pnlPerfil;
     // End of variables declaration//GEN-END:variables
 }

@@ -74,10 +74,6 @@ public class Usuario {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> feb87604c7d0c4778a0d1bf45c929369ad9df17d
 
     public String getApellidoUsuario() {
         return apellidoUsuario;
@@ -86,9 +82,4 @@ public class Usuario {
     public void setApellidoUsuario(String apellidoUsuario) {
         this.apellidoUsuario = apellidoUsuario;
     }
-<<<<<<< HEAD
-=======
->>>>>>> 45a7994a4a228ec9d481ff22baeb6ae6bd16fbd3
-=======
->>>>>>> feb87604c7d0c4778a0d1bf45c929369ad9df17d
 }

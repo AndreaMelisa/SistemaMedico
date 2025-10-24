@@ -1,13 +1,13 @@
 package vista;
 
+import controlador.Ctrl_paciente;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
 import modelo.Usuario;
 
-
-public class FrmMenu extends javax.swing.JFrame {
+public final class FrmMenu extends javax.swing.JFrame {
 
     public FrmMenu() {
         initComponents();
@@ -25,6 +25,10 @@ public class FrmMenu extends javax.swing.JFrame {
 
         PanelPerfil perfilPanel = new PanelPerfil(usuario);
         mostrarPanel(perfilPanel.getPnlPerfil());
+    }
+
+    public int getIdUsuarioLogueado() {
+        return usuario.getIdUsuario();
     }
 
     @Override
@@ -214,7 +218,10 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCitasActionPerformed
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        // TODO add your handling code here:
+        int idUsuario = getIdUsuarioLogueado();
+        PanelAgendar pa = new PanelAgendar(idUsuario);
+        mostrarPanel(pa);
+
     }//GEN-LAST:event_btnAgendarActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
@@ -222,7 +229,8 @@ public class FrmMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnPrescripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrescripcionesActionPerformed
-        // TODO add your handling code here:
+        PanelPrescripciones ppr = new PanelPrescripciones();
+        mostrarPanel(ppr);
     }//GEN-LAST:event_btnPrescripcionesActionPerformed
 
     private void btnReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportesActionPerformed

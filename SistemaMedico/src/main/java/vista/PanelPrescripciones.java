@@ -1,0 +1,242 @@
+package vista;
+
+import modelo.Receta;
+import controlador.Ctrl_receta;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.io.FileOutputStream;
+import java.sql.Date;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import com.google.common.collect.Lists;
+import controlador.Ctrl_cita;
+import java.util.function.Function;
+import modelo.Cita;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class PanelPrescripciones extends javax.swing.JPanel {
+
+    private final Ctrl_receta ctrlReceta;
+    private final DefaultTableModel modeloTabla;
+    private final List<Receta> listaRecetas;
+    private final Ctrl_cita ctrlCita = null;
+
+    public PanelPrescripciones() {
+        initComponents();
+        ctrlReceta = new Ctrl_receta();
+        listaRecetas = ctrlReceta.listarRecetas();
+        Ctrl_cita ctrlCita = new Ctrl_cita();
+        List<Cita> citasPendientes = ctrlCita.obtenerCitasPendientes();
+
+        modeloTabla = new DefaultTableModel(
+                new Object[]{"ID", "Paciente", "Doctor", "Descripción", "Fecha Emisión"}, 0
+        );
+        tablaRecetas.setModel(modeloTabla);
+        cargarTabla();
+    }
+
+    private void cargarTabla() {
+        modeloTabla.setRowCount(0);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        for (Receta r : listaRecetas) {
+            modeloTabla.addRow(new Object[]{
+                r.getIdReceta(),
+                r.getNombrePaciente(),
+                r.getNombreDoctor(),
+                r.getDescripcion(),
+                r.getFechaEmision().format(fmt)
+            });
+        }
+    }
+
+    private void agregarReceta() {
+        try {
+            Ctrl_cita ctrlCita = new Ctrl_cita();
+            java.util.List<Cita> citas = ctrlCita.obtenerCitasPendientes();
+
+            if (citas.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay citas pendientes.");
+                return;
+            }
+
+            String[] opciones = citas.stream()
+                    .map(c -> "ID cita: " + c.getId_cita() + " - " + c.getNombrePaciente() + " " + c.getApellidoPaciente())
+                    .toArray(String[]::new);
+
+            String seleccion = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Seleccione una cita:",
+                    "Agregar Receta",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    opciones,
+                    opciones[0]
+            );
+
+            if (seleccion == null) {
+                return;
+            }
+            int idCita = Integer.parseInt(seleccion.split(" - ")[0]);
+
+            String descripcion = JOptionPane.showInputDialog(this, "Descripción de la receta:");
+            if (descripcion == null || descripcion.isEmpty()) {
+                return;
+            }
+
+            Receta r = ctrlReceta.crearReceta(idCita, descripcion);
+            listaRecetas.add(r);
+            cargarTabla();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al agregar receta: " + ex.getMessage());
+        }
+    }
+
+    private void eliminarReceta() {
+        int fila = tablaRecetas.getSelectedRow();
+        if (fila >= 0) {
+            Receta r = listaRecetas.get(fila);
+            ctrlReceta.eliminarReceta(r.getIdReceta());
+            listaRecetas.remove(fila);
+            cargarTabla();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una receta para eliminar");
+        }
+    }
+
+    private void exportarExcel() {
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Recetas");
+
+            Row header = sheet.createRow(0);
+            for (int i = 0; i < modeloTabla.getColumnCount(); i++) {
+                header.createCell(i).setCellValue(modeloTabla.getColumnName(i));
+            }
+
+            for (int i = 0; i < modeloTabla.getRowCount(); i++) {
+                Row row = sheet.createRow(i + 1);
+                for (int j = 0; j < modeloTabla.getColumnCount(); j++) {
+                    Object value = modeloTabla.getValueAt(i, j);
+                    row.createCell(j).setCellValue(value != null ? value.toString() : "");
+                }
+            }
+
+            try (FileOutputStream fileOut = new FileOutputStream("Recetas.xlsx")) {
+                workbook.write(fileOut);
+            }
+
+            JOptionPane.showMessageDialog(this, "Exportado correctamente a Recetas.xlsx");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al exportar: " + ex.getMessage());
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        panelRound1 = new Componente.PanelRound();
+        scrollRecetas = new javax.swing.JScrollPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaRecetas = new javax.swing.JTable();
+        btnAgregarReceta = new Componente.ButtonRound();
+        btnEliminarReceta = new Componente.ButtonRound();
+        btnExportarRecetas = new Componente.ButtonRound();
+        jLabel4 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelRound1.setBackground(new java.awt.Color(242, 242, 242));
+        panelRound1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tablaRecetas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID Receta", "Paciente", "Doctor", "Descripción", "Fecha Emisión"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaRecetas);
+
+        scrollRecetas.setViewportView(jScrollPane1);
+
+        panelRound1.add(scrollRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 860, 420));
+
+        btnAgregarReceta.setText("AGREGAR RECETA");
+        btnAgregarReceta.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnAgregarReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarRecetaActionPerformed(evt);
+            }
+        });
+        panelRound1.add(btnAgregarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 680, 230, 50));
+
+        btnEliminarReceta.setText("ELIMINAR");
+        btnEliminarReceta.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        btnEliminarReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarRecetaActionPerformed(evt);
+            }
+        });
+        panelRound1.add(btnEliminarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 680, 230, 50));
+
+        btnExportarRecetas.setText("EXPORTAR");
+        btnExportarRecetas.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        btnExportarRecetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportarRecetasActionPerformed(evt);
+            }
+        });
+        panelRound1.add(btnExportarRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 680, 230, 50));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("TABLA DE RECETAS MÉDICAS");
+        panelRound1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+
+        add(panelRound1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 920));
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExportarRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarRecetasActionPerformed
+        this.exportarExcel();
+    }//GEN-LAST:event_btnExportarRecetasActionPerformed
+
+    private void btnAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRecetaActionPerformed
+        this.agregarReceta();
+    }//GEN-LAST:event_btnAgregarRecetaActionPerformed
+
+    private void btnEliminarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRecetaActionPerformed
+        this.eliminarReceta();
+    }//GEN-LAST:event_btnEliminarRecetaActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Componente.ButtonRound btnAgregarReceta;
+    private Componente.ButtonRound btnEliminarReceta;
+    private Componente.ButtonRound btnExportarRecetas;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private Componente.PanelRound panelRound1;
+    private javax.swing.JScrollPane scrollRecetas;
+    private javax.swing.JTable tablaRecetas;
+    // End of variables declaration//GEN-END:variables
+}

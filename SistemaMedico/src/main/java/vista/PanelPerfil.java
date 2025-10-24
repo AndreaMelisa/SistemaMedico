@@ -54,7 +54,7 @@ public class PanelPerfil extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("BUEN DÍA,");
         jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlPerfil.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 340, 70));
+        pnlPerfil.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 340, 70));
 
         lblnombreusuario.setBackground(new java.awt.Color(255, 255, 255));
         lblnombreusuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
@@ -62,7 +62,7 @@ public class PanelPerfil extends javax.swing.JPanel {
         lblnombreusuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblnombreusuario.setText("nombre");
         lblnombreusuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlPerfil.add(lblnombreusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 330, -1));
+        pnlPerfil.add(lblnombreusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 330, -1));
 
         lblapellidousuario.setBackground(new java.awt.Color(255, 255, 255));
         lblapellidousuario.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
@@ -70,10 +70,10 @@ public class PanelPerfil extends javax.swing.JPanel {
         lblapellidousuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblapellidousuario.setText("apellido");
         lblapellidousuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnlPerfil.add(lblapellidousuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 330, -1));
+        pnlPerfil.add(lblapellidousuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, 330, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/perfil.png"))); // NOI18N
-        pnlPerfil.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 410, 360));
+        pnlPerfil.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 410, 360));
 
         add(pnlPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 920));
     }// </editor-fold>//GEN-END:initComponents

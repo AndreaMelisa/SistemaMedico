@@ -2,10 +2,8 @@ package vista;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-import controlador.Ctrl_usuario;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import modelo.Usuario;
 import controlador.Ctrl_usuario;
 
@@ -50,9 +48,8 @@ public final class FrmLogin extends javax.swing.JFrame {
 
         if (usuario != null) {
             JOptionPane.showMessageDialog(this, "Bienvenido " + usuario.getNombreUsuario());
-            // Aquí abrirías el menú principal
-            // new FrmMenu().setVisible(true);
-            // this.dispose();
+            new FrmMenu().setVisible(true);
+            this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
             txtusuario.setText("");
@@ -93,6 +90,7 @@ public final class FrmLogin extends javax.swing.JFrame {
         jLabel2.setMaximumSize(new java.awt.Dimension(200, 200));
         panelRound4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 110, 100));
 
+        panelRound2.setBackground(new java.awt.Color(242, 242, 242));
         panelRound2.setBorderThickness(1);
         panelRound2.setEnabled(false);
         panelRound2.setFocusable(false);
@@ -103,10 +101,11 @@ public final class FrmLogin extends javax.swing.JFrame {
         txtusuario.setToolTipText("");
         txtusuario.setBorder(null);
         txtusuario.setSelectedTextColor(new java.awt.Color(242, 242, 242));
-        panelRound2.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 400, 50));
+        panelRound2.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 400, 40));
 
         panelRound4.add(panelRound2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 440, 50));
 
+        panelRound3.setBackground(new java.awt.Color(242, 242, 242));
         panelRound3.setBorderThickness(1);
         panelRound3.setEnabled(false);
         panelRound3.setFocusable(false);
@@ -114,7 +113,6 @@ public final class FrmLogin extends javax.swing.JFrame {
         panelRound3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtpassword.setBackground(new java.awt.Color(242, 242, 242));
-        txtpassword.setText("jPasswordField1");
         txtpassword.setBorder(null);
         panelRound3.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 5, 400, 40));
 
@@ -164,6 +162,7 @@ public final class FrmLogin extends javax.swing.JFrame {
 
         getContentPane().add(panelRound4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 560, 430));
 
+        jLabel1.setBackground(new java.awt.Color(187, 187, 187));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/imglogin.jpeg"))); // NOI18N
         jLabel1.setRequestFocusEnabled(false);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));

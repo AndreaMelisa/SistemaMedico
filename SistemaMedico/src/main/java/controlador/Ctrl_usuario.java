@@ -2,7 +2,7 @@ package controlador;
 
 import DAO.UsuarioDAO;
 import modelo.Usuario;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Ctrl_usuario {
 
@@ -12,19 +12,25 @@ public class Ctrl_usuario {
         this.usuarioDAO = new UsuarioDAO();
     }
 
-    public Usuario autenticarUsuario(String usuario, String password) {
-        if (usuario == null || usuario.isEmpty() || password == null || password.isEmpty()) {
-            throw new IllegalArgumentException("Usuario o contraseña no pueden estar vacíos");
+    public Usuario autenticarUsuario(String nombreUsuario, String password) {
+        if (nombreUsuario == null || nombreUsuario.isEmpty() || password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("Nombre de usuario o contraseña no pueden estar vacíos");
         }
 
-        Usuario usuarioAutenticado = usuarioDAO.iniciarSesion(usuario, password);
+        Usuario usuarioBD = usuarioDAO.obtenerUsuarioPorNombre(nombreUsuario);
 
-        if (usuarioAutenticado == null) {
-            System.out.println("Credenciales inválidas o usuario inactivo");
-        } else {
-            System.out.println("Bienvenido " + usuarioAutenticado.getNombreUsuario());
+        if (usuarioBD == null) {
+            return null;
         }
 
-        return usuarioAutenticado;
+        if (!BCrypt.checkpw(password, usuarioBD.getContraUsuario())) {
+            return null;
+        }
+
+        if (!"Activo".equalsIgnoreCase(usuarioBD.getEstado())) {
+            return null;
+        }
+
+        return usuarioBD;
     }
 }

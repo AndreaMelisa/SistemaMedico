@@ -23,6 +23,10 @@ public class ButtonRound extends JButton {
         setForeground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+<<<<<<< HEAD
+=======
+        // Hover y click
+>>>>>>> 45a7994a4a228ec9d481ff22baeb6ae6bd16fbd3
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) { repaint(); }
@@ -68,6 +72,10 @@ public class ButtonRound extends JButton {
         super.paintComponent(g);
     }
 
+<<<<<<< HEAD
+=======
+    // Getters y setters
+>>>>>>> 45a7994a4a228ec9d481ff22baeb6ae6bd16fbd3
     public int getRound() { return round; }
     public void setRound(int round) { this.round = round; repaint(); }
 
